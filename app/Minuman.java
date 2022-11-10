@@ -7,6 +7,6 @@ public class Minuman extends Menu {
     }
 
     public boolean getDingin(){
-        
+        return this.dingin;
     }
 }
