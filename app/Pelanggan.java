@@ -5,18 +5,19 @@ import java.util.ArrayList;
 public class Pelanggan {
     private String name;
     private int table_no;
-    private Menu<String> menu;
+    private ArrayList<Menu> order = new ArrayList<Menu>();
     private boolean takeaway;
 
-    public Pelanggan() {
-
+    public Pelanggan(String name, int table_no) {
+        this.name = name;
+        this.table_no = table_no;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setTableNo() {
+    public void setTableNo(int table_no) {
         this.table_no = table_no;
     }
 
@@ -32,15 +33,15 @@ public class Pelanggan {
 
     }
 
-    public Menu getOrder() {
-
+    public ArrayList<Menu> getOrder() {
+        return this.order;
     }
-    /*
-     * public Menu<String> getOrder() {
-     * }
-     */
 
-    public void setTakeaway() {
+    public void setTakeaway(boolean takeaway) {
         this.takeaway = takeaway;
+    }
+
+    public boolean getTakeway(){
+        return this.takeaway;
     }
 }
