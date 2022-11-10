@@ -4,6 +4,6 @@ import gui.*;
 
 public class Aplikasi{
     public static void main(String[] args){
-        // Do something
+        System.out.println("Hello");
     };
 }
