@@ -2,46 +2,45 @@ package app;
 
 import java.util.ArrayList;
 
-public class Pelanggan {
+public class Pelanggan{
     private String name;
     private int table_no;
-    private ArrayList<Menu> order = new ArrayList<Menu>();
+    private ArrayList <Menu> Order;
     private boolean takeaway;
 
-    public Pelanggan(String name, int table_no) {
+    public Pelanggan(){
+
+    }
+
+    public void setName(){
         this.name = name;
+    }
+
+    public void setTableNo(){
         this.table_no = table_no;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setTableNo(int table_no) {
-        this.table_no = table_no;
-    }
-
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public int getTableName() {
+    public int getTableName(){
         return table_no;
     }
 
-    public void addOrder(Menu Pesan) {
+    public void addOrder(Menu Pesan){
 
     }
 
-    public ArrayList<Menu> getOrder() {
-        return this.order;
+    public ArrayList <Menu> getOrder () {
+        ArrayList <Menu> getOrder = new ArrayList <Menu>();
+        return getOrder;
     }
 
+    public boolean isTakeaway() {
+        return takeaway;
+    }
     public void setTakeaway(boolean takeaway) {
         this.takeaway = takeaway;
-    }
-
-    public boolean getTakeway(){
-        return this.takeaway;
     }
 }
