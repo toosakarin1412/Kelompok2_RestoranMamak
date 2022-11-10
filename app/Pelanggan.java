@@ -1,8 +1,11 @@
 package app;
 
+import java.util.ArrayList;
+
 public class Pelanggan {
     private String name;
     private int table_no;
+    private Menu<String> menu;
     private boolean takeaway;
 
     public Pelanggan() {
@@ -32,6 +35,10 @@ public class Pelanggan {
     public Menu getOrder() {
 
     }
+    /*
+     * public Menu<String> getOrder() {
+     * }
+     */
 
     public void setTakeaway() {
         this.takeaway = takeaway;
