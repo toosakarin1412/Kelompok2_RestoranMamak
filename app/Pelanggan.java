@@ -2,6 +2,14 @@ package app;
 
 import java.util.ArrayList; //import Arraylist
 
+/**
+ * Menyatakan class bernama Pelanggan
+ * untuk menyimpan nama, nomor meja, pesanan,
+ * serta sifat pesanan yaitu makan ditempat atau takehome.
+ *
+ * @author Kelompok2_RestoranMamak
+ * @version 1.3
+ */
 public class Pelanggan {
     private String name;
     private int table_no;
@@ -9,18 +17,19 @@ public class Pelanggan {
     private boolean takeaway;
 
     /**
-     * Constructor for objects of Pelanggan dengan parameter
+     * Method constructor dengan parameter untuk objects dari Pelanggan
      * 
      * @param name
      * @param table_no
      */
+
     public Pelanggan(String name, int table_no) {
         this.name = name;
         this.table_no = table_no;
     }
 
     /**
-     * Method setName untuk mengatur/mengubah name
+     * Method mutator setName dengan paramater sebagai setter dari name.
      * 
      * @param name
      */
@@ -29,7 +38,7 @@ public class Pelanggan {
     }
 
     /**
-     * method setTableNo untuk mengatur/mengubah table_no pelanggan
+     * Method accessor setTableNo dengan parameter sebagai setter dari table_no
      * 
      * @param table_no
      */
@@ -38,7 +47,7 @@ public class Pelanggan {
     }
 
     /**
-     * Method getname untuk mengembalikan name
+     * Method accessor getName tanpa parameter untuk mengembalikan name
      * 
      * @return name
      */
@@ -47,7 +56,8 @@ public class Pelanggan {
     }
 
     /**
-     * method getTableName untuk mengembalikan table_no Pelanggan
+     * Method accessor getTableName tanpa parameter untuk mengembalikan table_no
+     * Pelanggan
      * 
      * @return table_no
      */
@@ -56,26 +66,28 @@ public class Pelanggan {
     }
 
     /**
-     * addOrder menu pesanan pelanggan
+     * Method constructor addOrder dengan parameter untuk menambahkan pesanan
+     * kedalam
+     * pelanggan
      * 
-     * @param Pesan 
+     * @param Pesan
      */
     public void addOrder(Menu Pesan) {
         order.add(Pesan);
     }
 
     /**
-     * method getOrder untuk mengembalikan order 
+     * method getOrder accessor untuk mengembalikan order
      * dari arraylist menu
      * 
      * @return order
      */
-    public ArrayList <Menu> getOrder() {
+    public ArrayList<Menu> getOrder() {
         return this.order;
     }
 
     /**
-     * method setTakeaway untuk mengatur/mengubah Takeaway
+     * method mutator setTakeaway dengan parameter sebagai setter dari takeaway.
      * 
      * @param takeaway
      */
@@ -84,12 +96,12 @@ public class Pelanggan {
     }
 
     /**
-     * method getTakeaway untuk mengembalikan takeaway
+     * method accessor getTakeaway untuk return takeaway kedalam pelanggan
      * 
      * @return takeaway
      */
-    public boolean getTakeway(){
+    public boolean getTakeway() {
         return this.takeaway;
     }
-    
+
 }
