@@ -12,11 +12,11 @@ public abstract class Pegawai {
         return this.phone;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setPhone() {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }
