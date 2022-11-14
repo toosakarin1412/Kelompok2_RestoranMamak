@@ -13,7 +13,7 @@ public abstract class Menu {
      * Mengatur nama dari menu
      * @param nama nama menu
      */
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -21,7 +21,7 @@ public abstract class Menu {
      * Mengatur harga dari menu
      * @param price harga menu
      */
-    public void setPrice(){
+    public void setPrice(int price){
         this.price = price;
     }
 
@@ -29,7 +29,7 @@ public abstract class Menu {
      * Mengatur gambar dari menu
      * @param picture gambar menu
      */
-    public void setPicture(){
+    public void setPicture(String picture){
         this.picture = picture;
     }
 
