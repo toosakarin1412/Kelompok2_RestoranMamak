@@ -83,7 +83,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel2.setText("Username");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(200, 100, 53, 16);
+        jLabel2.setBounds(200, 100, 60, 16);
 
         jLabel4.setFont(new java.awt.Font("Segoe Print", 1, 12)); // NOI18N
         jLabel4.setText("Please Insert your username and password!");
@@ -136,13 +136,11 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
         // to close the window
         System.exit(0);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // TODO add your handling code here:
         // to minimize the window
         this.setState(1);
     }//GEN-LAST:event_jLabel6MouseClicked
