@@ -1,5 +1,12 @@
 package app;
 
-public class Admin {
+public class Admin extends Pegawai{
 
+    public Admin(){
+        
+    };
+
+    public void editMenu(){
+        
+    };
 }
