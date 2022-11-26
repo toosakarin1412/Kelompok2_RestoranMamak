@@ -37,8 +37,6 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,29 +93,6 @@ public class LoginPage extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 0, 204));
         jPanel3.setLayout(null);
-
-        jLabel5.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 153, 255));
-        jLabel5.setText("X");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-        });
-        jPanel3.add(jLabel5);
-        jLabel5.setBounds(420, 10, 30, 40);
-
-        jLabel6.setFont(new java.awt.Font("Tw Cen MT", 0, 48)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 153, 255));
-        jLabel6.setText("-");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
-            }
-        });
-        jPanel3.add(jLabel6);
-        jLabel6.setBounds(400, 20, 37, 16);
-
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 60));
 
         pack();
@@ -135,16 +110,6 @@ public class LoginPage extends javax.swing.JFrame {
         String Username = String.valueOf(txtUsername.getText());
     }//GEN-LAST:event_txtUsernameActionPerformed
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // to close the window
-        System.exit(0);
-    }//GEN-LAST:event_jLabel5MouseClicked
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // to minimize the window
-        this.setState(1);
-    }//GEN-LAST:event_jLabel6MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
@@ -152,8 +117,6 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
