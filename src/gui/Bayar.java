@@ -7,13 +7,15 @@ package gui;
 import javax.swing.JOptionPane;
 
 /**
+ * class bayar menampilkan jumlah uang dan kembalian customer
  *
- * @author rin1412
+ * @author Kelompok2_RestoranMamak
  */
 public class Bayar extends javax.swing.JFrame {
     int total;
+    
     /**
-     * Creates new form Bayar
+     * membuat form bayar baru
      */
     public Bayar(int total) {
         this.total = total;
@@ -93,6 +95,9 @@ public class Bayar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * method untuk menginput jumlah uang yang dibayar oleh customer
+    */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int uang_input = Integer.parseInt(input_uang.getText());
         if(uang_input - this.total < 0){
