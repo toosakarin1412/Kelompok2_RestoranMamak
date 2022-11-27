@@ -16,8 +16,8 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author rin1412
+ * GUI CarsierPage
+ * @author Kelompok2_RestoranMamak
  */
 public class CasierPage extends javax.swing.JFrame {
     Database dbms = new Database();
@@ -28,7 +28,7 @@ public class CasierPage extends javax.swing.JFrame {
     private ArrayList<Pelanggan> dataPelanggan = new ArrayList<Pelanggan>();
     
     /**
-     * Creates new form CasierPage
+     * Membuat form baru dari CasierPage
      */
     public CasierPage() {
         initComponents();
@@ -350,6 +350,9 @@ public class CasierPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method untuk menghapus data customer
+     */
     private void del_cust_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_cust_nameActionPerformed
         DefaultListModel model = (DefaultListModel) ListCust.getModel();
         int selectedIndex = ListCust.getSelectedIndex();
@@ -370,6 +373,9 @@ public class CasierPage extends javax.swing.JFrame {
         this.updateTotal();
     }//GEN-LAST:event_del_cust_nameActionPerformed
 
+    /**
+     * Method untuk melakukan pemesanan dari menu
+     */
     private void ListCustMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListCustMouseClicked
         nama_label.setText(ListCust.getSelectedValue());
         takeaway_label.setText(dataPelanggan.get(ListCust.getSelectedIndex()).getTakeway() ? "Ya" : "Tidak");
@@ -394,6 +400,9 @@ public class CasierPage extends javax.swing.JFrame {
         this.updateTotal();
     }//GEN-LAST:event_ListCustMouseClicked
 
+    /**
+     * Method untuk menambah daftar pesanan
+     */
     private void add_order_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_order_btnActionPerformed
         Menu pesan = dataMenu.get(add_makanan_combo.getSelectedIndex());
         int byk = Integer.parseInt(banyak_pesan.getText());
@@ -420,6 +429,9 @@ public class CasierPage extends javax.swing.JFrame {
         this.updateTotal();
     }//GEN-LAST:event_add_order_btnActionPerformed
 
+    /**
+     * Method untuk menghapus daftar pesanan
+     */
     private void del_order_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_order_btnActionPerformed
         DefaultTableModel model = (DefaultTableModel)table_pesanan.getModel();
         if(table_pesanan.getSelectedRow() != -1) {
@@ -432,6 +444,9 @@ public class CasierPage extends javax.swing.JFrame {
         this.updateTotal();
     }//GEN-LAST:event_del_order_btnActionPerformed
 
+    /**
+     * Method untuk menambah pelanggan
+     */
     private void add_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_pelangganActionPerformed
         dataPelanggan.add(new Pelanggan(nama_pelanggan_input.getText(), takeaway_input.isSelected()));
         
@@ -447,6 +462,9 @@ public class CasierPage extends javax.swing.JFrame {
         add_pelanggan.setEnabled(false);
     }//GEN-LAST:event_add_pelangganActionPerformed
 
+    /**
+     * Method untuk menambah data customer
+     */
     private void nama_pelanggan_inputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nama_pelanggan_inputKeyReleased
         if(nama_pelanggan_input.getText().length() > 0){
             add_pelanggan.setEnabled(true);
@@ -459,6 +477,9 @@ public class CasierPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nama_pelanggan_inputActionPerformed
 
+    /**
+     * Method untuk melakukan pembayaran
+     */
     private void pay_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pay_btnActionPerformed
         Bayar byr = new Bayar(total_bill);
         byr.setVisible(true);
@@ -482,6 +503,9 @@ public class CasierPage extends javax.swing.JFrame {
         this.updateTotal();
     }//GEN-LAST:event_pay_btnActionPerformed
 
+    /**
+     * Method untuk menghitung total pemesanan
+     */
     private void updateTotal(){
         total_bill = 0;
                 
@@ -495,7 +519,8 @@ public class CasierPage extends javax.swing.JFrame {
         total_belanja.setText(String.valueOf(total_bill));
     }
     /**
-     * @param args the command line arguments
+     * Method untuk menjalankan class
+     * @param args
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
