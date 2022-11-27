@@ -1,5 +1,11 @@
 package app;
 
+/**
+ * Menyatakan class Pegawai yang bersifat abstract
+ * 
+ * author Kelompok2_RestoranMamak
+ * version 1.0
+ */
 public abstract class Pegawai {
     private String name;
     private String phone;
@@ -20,12 +26,12 @@ public abstract class Pegawai {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
-    public void setPassword(String pass){
+
+    public void setPassword(String pass) {
         this.password = pass;
     }
-    
-    public String getPassword(){
+
+    public String getPassword() {
         return this.password;
     }
 }
