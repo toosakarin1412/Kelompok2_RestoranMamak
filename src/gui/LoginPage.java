@@ -12,10 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * GUI LoginPage menyimpan username dan password
+ * class LoginPage menyimpan username dan password
  *
  * @author Kelompok2_RestoranMamak
- * @version 27/11/2022
  */
 public class LoginPage extends javax.swing.JFrame {
     private Database dbms = new Database();
@@ -104,6 +103,9 @@ public class LoginPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * method untuk login dengan menginput password dan username
+    */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         boolean login = false;
         for(int i = 0;i < dataPegawai.size();i++){
