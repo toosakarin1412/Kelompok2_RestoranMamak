@@ -3,20 +3,46 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
-
+import app.Menu;
+import app.Pegawai;
+import app.Pelanggan;
+import database.*;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author rin1412
  */
 public class CasierPage extends javax.swing.JFrame {
-
+    Database dbms = new Database();
+    int current_cust;
+    int total_bill;
+    private ArrayList<Menu> dataMenu = new ArrayList<Menu>();
+    private ArrayList<Pegawai> dataPegawai = new ArrayList<Pegawai>();
+    private ArrayList<Pelanggan> dataPelanggan = new ArrayList<Pelanggan>();
+    
     /**
      * Creates new form CasierPage
      */
     public CasierPage() {
         initComponents();
+        dataMenu = dbms.getMenu();
+        add_pelanggan.setEnabled(false);
+        
+        System.out.println(dataMenu.get(0).getName());
+        for(int i = 0;i < dataMenu.size();i++){
+            System.out.println(dataMenu.get(i).getName());
+            add_makanan_combo.addItem(dataMenu.get(i).getName());
+        }
+        
+        add_makanan_combo.setSelectedIndex(-1);
+        
     }
 
     /**
@@ -36,23 +62,28 @@ public class CasierPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListCust = new javax.swing.JList<>();
-        add_cust_btn = new javax.swing.JButton();
         del_cust_name = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         pay_btn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_pesanan = new javax.swing.JTable();
         del_order_btn = new javax.swing.JButton();
         add_order_btn = new javax.swing.JButton();
         nama_label = new javax.swing.JLabel();
         takeaway_label = new javax.swing.JLabel();
-        total_label = new javax.swing.JLabel();
-        show_menu_btn = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        banyak_pesan = new javax.swing.JTextField();
+        add_makanan_combo = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        total_belanja = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        nama_pelanggan_input = new javax.swing.JTextField();
+        add_pelanggan = new javax.swing.JButton();
+        takeaway_input = new javax.swing.JCheckBox();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,28 +100,18 @@ public class CasierPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Casier");
-        setPreferredSize(new java.awt.Dimension(1080, 720));
+        setPreferredSize(new java.awt.Dimension(1080, 730));
 
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel1.setText("Kasir Restoran Mamak");
 
-        ListCust.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        ListCust.setPreferredSize(new java.awt.Dimension(53, 50));
         ListCust.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ListCustMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(ListCust);
-
-        add_cust_btn.setText("Add");
-        add_cust_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_cust_btnActionPerformed(evt);
-            }
-        });
 
         del_cust_name.setText("Del");
         del_cust_name.addActionListener(new java.awt.event.ActionListener() {
@@ -106,74 +127,56 @@ public class CasierPage extends javax.swing.JFrame {
 
         jLabel4.setText("Takeaway");
 
-        jLabel6.setText("Total");
-
         pay_btn.setText("Bayar");
+        pay_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pay_btnActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_pesanan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Pesanan", "Harga", "Banyak", "Jumlah"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        table_pesanan.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(table_pesanan);
+        if (table_pesanan.getColumnModel().getColumnCount() > 0) {
+            table_pesanan.getColumnModel().getColumn(0).setResizable(false);
+            table_pesanan.getColumnModel().getColumn(1).setResizable(false);
+            table_pesanan.getColumnModel().getColumn(2).setResizable(false);
+            table_pesanan.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -195,35 +198,52 @@ public class CasierPage extends javax.swing.JFrame {
 
         takeaway_label.setText("null");
 
-        total_label.setText("0");
+        jLabel7.setText("Banyak");
+
+        jLabel8.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jLabel8.setText("TOTAL Rp.");
+        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        total_belanja.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(add_order_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(del_order_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pay_btn))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(total_label)
-                            .addComponent(takeaway_label)
-                            .addComponent(nama_label))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(takeaway_label)
+                                            .addComponent(nama_label)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(add_makanan_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(banyak_pesan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(add_order_btn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(del_order_btn)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(total_belanja, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pay_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -241,23 +261,42 @@ public class CasierPage extends javax.swing.JFrame {
                     .addComponent(takeaway_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(total_label))
+                    .addComponent(add_makanan_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(banyak_pesan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add_order_btn)
+                    .addComponent(del_order_btn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pay_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(del_order_btn)
-                    .addComponent(add_order_btn)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pay_btn)
+                    .addComponent(total_belanja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
-        show_menu_btn.setText("Menu");
-        show_menu_btn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setText("Add Customer");
+
+        nama_pelanggan_input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                show_menu_btnActionPerformed(evt);
+                nama_pelanggan_inputActionPerformed(evt);
             }
         });
+        nama_pelanggan_input.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nama_pelanggan_inputKeyReleased(evt);
+            }
+        });
+
+        add_pelanggan.setText("Add");
+        add_pelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_pelangganActionPerformed(evt);
+            }
+        });
+
+        takeaway_input.setText("Takeaway");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -271,13 +310,15 @@ public class CasierPage extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(show_menu_btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(nama_pelanggan_input, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(add_cust_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(del_cust_name, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(takeaway_input)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(add_pelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(del_cust_name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -285,58 +326,174 @@ public class CasierPage extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add_cust_btn)
-                    .addComponent(del_cust_name))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(show_menu_btn)
-                .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nama_pelanggan_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(takeaway_input)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(add_pelanggan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(del_cust_name))))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void add_cust_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_cust_btnActionPerformed
-        JFrame menuFrame = new AddCust();
-        menuFrame.setTitle("Add Customer");
-        menuFrame.setVisible(true);
-        menuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_add_cust_btnActionPerformed
-
     private void del_cust_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_cust_nameActionPerformed
-        // TODO add your handling code here:
+        DefaultListModel model = (DefaultListModel) ListCust.getModel();
+        int selectedIndex = ListCust.getSelectedIndex();
+        if (selectedIndex != -1) {
+            model.remove(selectedIndex);
+        }
+        
+        dataPelanggan.remove(selectedIndex);
+        DefaultTableModel mdl = (DefaultTableModel)table_pesanan.getModel();
+        while(mdl.getRowCount() > 0){
+            mdl.removeRow(0);
+        }
+        add_makanan_combo.setSelectedIndex(-1);
+        banyak_pesan.setText(null);
+        nama_label.setText(null);
+        takeaway_label.setText(null);
+        
+        this.updateTotal();
     }//GEN-LAST:event_del_cust_nameActionPerformed
-
-    private void del_order_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_order_btnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_del_order_btnActionPerformed
-
-    private void show_menu_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_menu_btnActionPerformed
-        JFrame menuFrame = new MenuList();
-        menuFrame.setTitle("Menu");
-        menuFrame.setVisible(true);
-        menuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_show_menu_btnActionPerformed
-
-    private void add_order_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_order_btnActionPerformed
-        JFrame menuFrame = new AddPesanan();
-        menuFrame.setTitle("Tambah Pesanan");
-        menuFrame.setVisible(true);
-        menuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_add_order_btnActionPerformed
 
     private void ListCustMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListCustMouseClicked
         nama_label.setText(ListCust.getSelectedValue());
+        takeaway_label.setText(dataPelanggan.get(ListCust.getSelectedIndex()).getTakeway() ? "Ya" : "Tidak");
+        current_cust = ListCust.getSelectedIndex();
+        
+        DefaultTableModel model = (DefaultTableModel)table_pesanan.getModel();
+        while(model.getRowCount() > 0){
+            model.removeRow(0);
+        }
+        ArrayList<Menu> order = new ArrayList<Menu>();
+        ArrayList<Integer> byk_pesanan = new ArrayList<Integer>();
+        order = dataPelanggan.get(current_cust).getOrder();
+        byk_pesanan = dataPelanggan.get(current_cust).getByk();
+        for(int i = 0;i < order.size();i++){
+            int ttl = order.get(i).getPrice()*byk_pesanan.get(i);
+            model.addRow(new Object[]{order.get(i).getName(),order.get(i).getPrice(),byk_pesanan.get(i), ttl});
+        }
+       
+        add_makanan_combo.setSelectedIndex(-1);
+        banyak_pesan.setText(null);
+        
+        this.updateTotal();
     }//GEN-LAST:event_ListCustMouseClicked
 
+    private void add_order_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_order_btnActionPerformed
+        Menu pesan = dataMenu.get(add_makanan_combo.getSelectedIndex());
+        int byk = Integer.parseInt(banyak_pesan.getText());
+        dataPelanggan.get(current_cust).addOrder(pesan);
+        dataPelanggan.get(current_cust).setByk(byk);
+        
+        DefaultTableModel model = (DefaultTableModel)table_pesanan.getModel();
+        while(model.getRowCount() > 0){
+            model.removeRow(0);
+        }
+        
+        ArrayList<Menu> order = new ArrayList<Menu>();
+        ArrayList<Integer> byk_pesanan = new ArrayList<Integer>();
+        order = dataPelanggan.get(current_cust).getOrder();
+        byk_pesanan = dataPelanggan.get(current_cust).getByk();
+        for(int i = 0;i < order.size();i++){
+            int ttl = order.get(i).getPrice()*byk_pesanan.get(i);
+            model.addRow(new Object[]{order.get(i).getName(),order.get(i).getPrice(),byk_pesanan.get(i), ttl});
+        }
+       
+        add_makanan_combo.setSelectedIndex(-1);
+        banyak_pesan.setText(null);
+        
+        this.updateTotal();
+    }//GEN-LAST:event_add_order_btnActionPerformed
+
+    private void del_order_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_del_order_btnActionPerformed
+        DefaultTableModel model = (DefaultTableModel)table_pesanan.getModel();
+        if(table_pesanan.getSelectedRow() != -1) {
+               // remove selected row from the model
+               dataPelanggan.get(current_cust).removeOrder(table_pesanan.getSelectedRow());
+               model.removeRow(table_pesanan.getSelectedRow());
+               JOptionPane.showMessageDialog(null, "Selected row deleted successfully");
+            }
+        
+        this.updateTotal();
+    }//GEN-LAST:event_del_order_btnActionPerformed
+
+    private void add_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_pelangganActionPerformed
+        dataPelanggan.add(new Pelanggan(nama_pelanggan_input.getText(), takeaway_input.isSelected()));
+        
+        DefaultListModel model = new DefaultListModel();
+        model.clear();
+        for(int i = 0;i < dataPelanggan.size();i++){
+            model.addElement(dataPelanggan.get(i).getName());
+        }
+        ListCust.setModel(model);
+        
+        nama_pelanggan_input.setText(null);
+        takeaway_input.setSelected(false);
+        add_pelanggan.setEnabled(false);
+    }//GEN-LAST:event_add_pelangganActionPerformed
+
+    private void nama_pelanggan_inputKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nama_pelanggan_inputKeyReleased
+        if(nama_pelanggan_input.getText().length() > 0){
+            add_pelanggan.setEnabled(true);
+        }else{
+            add_pelanggan.setEnabled(false);
+        }
+    }//GEN-LAST:event_nama_pelanggan_inputKeyReleased
+
+    private void nama_pelanggan_inputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nama_pelanggan_inputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nama_pelanggan_inputActionPerformed
+
+    private void pay_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pay_btnActionPerformed
+        Bayar byr = new Bayar(total_bill);
+        byr.setVisible(true);
+        
+        DefaultListModel model = (DefaultListModel) ListCust.getModel();
+        int selectedIndex = ListCust.getSelectedIndex();
+        if (selectedIndex != -1) {
+            model.remove(selectedIndex);
+        }
+        
+        dataPelanggan.remove(selectedIndex);
+        DefaultTableModel mdl = (DefaultTableModel)table_pesanan.getModel();
+        while(mdl.getRowCount() > 0){
+            mdl.removeRow(0);
+        }
+        add_makanan_combo.setSelectedIndex(-1);
+        banyak_pesan.setText(null);
+        nama_label.setText(null);
+        takeaway_label.setText(null);
+        
+        this.updateTotal();
+    }//GEN-LAST:event_pay_btnActionPerformed
+
+    private void updateTotal(){
+        total_bill = 0;
+                
+        DefaultTableModel mdl = (DefaultTableModel)table_pesanan.getModel();
+        for (int i = 0; i < mdl.getRowCount(); i++){
+            System.out.println(mdl.getValueAt(i, 3));
+            int amount = Integer.parseInt(String.valueOf(mdl.getValueAt(i, 3)));
+            total_bill += amount;
+        }
+        System.out.println(total_bill);
+        total_belanja.setText(String.valueOf(total_bill));
+    }
     /**
      * @param args the command line arguments
      */
@@ -374,8 +531,10 @@ public class CasierPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListCust;
-    private javax.swing.JButton add_cust_btn;
+    private javax.swing.JComboBox<String> add_makanan_combo;
     private javax.swing.JButton add_order_btn;
+    private javax.swing.JButton add_pelanggan;
+    private javax.swing.JTextField banyak_pesan;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -385,18 +544,21 @@ public class CasierPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel nama_label;
+    private javax.swing.JTextField nama_pelanggan_input;
     private javax.swing.JButton pay_btn;
-    private javax.swing.JButton show_menu_btn;
+    private javax.swing.JTable table_pesanan;
+    private javax.swing.JCheckBox takeaway_input;
     private javax.swing.JLabel takeaway_label;
-    private javax.swing.JLabel total_label;
+    private javax.swing.JLabel total_belanja;
     // End of variables declaration//GEN-END:variables
 }

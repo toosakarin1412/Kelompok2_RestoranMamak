@@ -1,5 +1,5 @@
 package app;
 
-public class Admin {
+public class Admin extends Pegawai{
 
 }

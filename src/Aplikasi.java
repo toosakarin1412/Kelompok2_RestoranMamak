@@ -1,5 +1,3 @@
-import app.*;
-import database.*;
 import gui.*;
 import javax.swing.*;
 

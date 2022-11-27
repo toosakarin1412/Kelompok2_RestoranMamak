@@ -6,7 +6,9 @@ public class Pelanggan {
     private String name;
     private int table_no;
     private ArrayList<Menu> order = new ArrayList<Menu>();
+    private ArrayList<Integer> byk_pesanan = new ArrayList<Integer>();
     private boolean takeaway;
+    
 
     /**
      * Constructor for objects of Pelanggan dengan parameter
@@ -14,9 +16,9 @@ public class Pelanggan {
      * @param name
      * @param table_no
      */
-    public Pelanggan(String name, int table_no) {
+    public Pelanggan(String name, boolean takeaway) {
         this.name = name;
-        this.table_no = table_no;
+        this.takeaway = takeaway;
     }
 
     /**
@@ -73,7 +75,12 @@ public class Pelanggan {
     public ArrayList <Menu> getOrder() {
         return this.order;
     }
-
+    
+    public void removeOrder(int index){
+        this.order.remove(index);
+        this.byk_pesanan.remove(index);
+    }
+    
     /**
      * method setTakeaway untuk mengatur/mengubah Takeaway
      * 
@@ -91,5 +98,13 @@ public class Pelanggan {
     public boolean getTakeway(){
         return this.takeaway;
     }
+    
+    public void setByk(int byk){
+        this.byk_pesanan.add(byk);
+    }
+ 
+    public ArrayList<Integer> getByk(){
+        return this.byk_pesanan;
+    };
     
 }
