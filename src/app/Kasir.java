@@ -5,13 +5,15 @@
 package app;
 
 /**
- *
- * @author rin1412
+ * Menyatakan class Kasir yaitu inheritance dari class Pegawai.
+ * 
+ * @author Kelompok2_RestoranMamak
+ * @version 1.0
  */
-public class Kasir extends Pegawai{
+public class Kasir extends Pegawai {
 
-    public Kasir(){
-    
+    public Kasir() {
+
     }
-    
+
 }

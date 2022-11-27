@@ -2,13 +2,18 @@ package app;
 
 import java.util.ArrayList; //import Arraylist
 
+/**
+ * Class Pelanggan
+ * 
+ * @author Kelompok2_RestoranMamak
+ * @version 1.0
+ */
 public class Pelanggan {
     private String name;
     private int table_no;
     private ArrayList<Menu> order = new ArrayList<Menu>();
     private ArrayList<Integer> byk_pesanan = new ArrayList<Integer>();
     private boolean takeaway;
-    
 
     /**
      * Constructor for objects of Pelanggan dengan parameter
@@ -60,27 +65,27 @@ public class Pelanggan {
     /**
      * addOrder menu pesanan pelanggan
      * 
-     * @param Pesan 
+     * @param Pesan
      */
     public void addOrder(Menu Pesan) {
         order.add(Pesan);
     }
 
     /**
-     * method getOrder untuk mengembalikan order 
+     * method getOrder untuk mengembalikan order
      * dari arraylist menu
      * 
      * @return order
      */
-    public ArrayList <Menu> getOrder() {
+    public ArrayList<Menu> getOrder() {
         return this.order;
     }
-    
-    public void removeOrder(int index){
+
+    public void removeOrder(int index) {
         this.order.remove(index);
         this.byk_pesanan.remove(index);
     }
-    
+
     /**
      * method setTakeaway untuk mengatur/mengubah Takeaway
      * 
@@ -95,16 +100,16 @@ public class Pelanggan {
      * 
      * @return takeaway
      */
-    public boolean getTakeway(){
+    public boolean getTakeway() {
         return this.takeaway;
     }
-    
-    public void setByk(int byk){
+
+    public void setByk(int byk) {
         this.byk_pesanan.add(byk);
     }
- 
-    public ArrayList<Integer> getByk(){
+
+    public ArrayList<Integer> getByk() {
         return this.byk_pesanan;
     };
-    
+
 }
