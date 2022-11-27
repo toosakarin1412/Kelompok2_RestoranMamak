@@ -16,8 +16,8 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author rin1412
+ * GUI CarsierPage
+ * @author Kelompok2_RestoranMamak
  */
 public class CasierPage extends javax.swing.JFrame {
     Database dbms = new Database();
@@ -370,6 +370,9 @@ public class CasierPage extends javax.swing.JFrame {
         this.updateTotal();
     }//GEN-LAST:event_del_cust_nameActionPerformed
 
+    /**
+     * Method 
+     */
     private void ListCustMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListCustMouseClicked
         nama_label.setText(ListCust.getSelectedValue());
         takeaway_label.setText(dataPelanggan.get(ListCust.getSelectedIndex()).getTakeway() ? "Ya" : "Tidak");
