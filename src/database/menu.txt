@@ -1,5 +1,10 @@
 Makanan%Nasi Goreng%15000
 Makanan%Nasi Uduk%10000
-Minuman%Jus%8000
+Makanan%Bakso Granat%18000
+Makanan%Rawon Pedas%16000
+Makanan%Sate Matang%20000
+Minuman%Jus Alpukat%8000
+Minuman%Bandrek%5000
+Minuman%Brown Sugar Boba Milk Tea%20000
+Minuman%Milkshake Nutella%12000
 Minuman%Air Putih%1000
-Minuman%Sanger%11000
