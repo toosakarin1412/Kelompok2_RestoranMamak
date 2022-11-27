@@ -4,8 +4,8 @@ package app;
  * Menyatakan class Pegawai yang bersifat abstract
  * untuk mendapatkan nama, nomor hp, serta password
  * 
- * author Kelompok2_RestoranMamak
- * version 1.4
+ * @author Kelompok2_RestoranMamak
+ * @version 1.0
  */
 public abstract class Pegawai {
     private String name;
